@@ -7,9 +7,11 @@ import android.os.AsyncTask;
 import com.br.guiafilme.R;
 import com.br.guiafilme.Web.WebClient;
 import com.br.guiafilme.model.Genre;
+import com.br.guiafilme.model.GenreList;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class GetGenreTask extends AsyncTask<Void,Void,String> {
@@ -36,12 +38,12 @@ public class GetGenreTask extends AsyncTask<Void,Void,String> {
     @Override
     protected void onPostExecute(String json) {
         dialog.dismiss();
+        Gson gson = new Gson();
+        List<Genre> gen = new ArrayList<>();
+
         if(!json.isEmpty()) {
-            Genre[] var = new Gson().fromJson(json, Genre[].class);
-            this.genres.clear();
-            for (Genre g : var) {
-                this.genres.add(g);
-            }
+            GenreList list = gson.fromJson(json, GenreList.class);
+
         }
     }
 
