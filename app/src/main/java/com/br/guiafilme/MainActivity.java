@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.br.guiafilme.Tasks.GetGenreTask;
+import com.br.guiafilme.Tasks.MoviesByGenreTask;
 import com.br.guiafilme.model.Genre;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         GetGenreTask task = new GetGenreTask(this,genresList);
+        //MoviesByGenreTask task = new MoviesByGenreTask(this,14);
         task.execute();
     }
 }
