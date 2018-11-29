@@ -3,6 +3,7 @@ package com.br.guiafilme.Tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.br.guiafilme.Adapters.MovieAdapter;
 import com.br.guiafilme.R;
 import com.br.guiafilme.Web.WebClient;
 import com.br.guiafilme.model.Movie;
@@ -15,12 +16,14 @@ public class MoviesByGenreTask extends AsyncTask<Void,Void,ArrayList<Movie>> {
 
     private final Context context;
     private final int idGenre;
-    private final ArrayList<Movie> movieList;
+    private final ArrayList<Movie> movies;
+    private final MovieAdapter adapter;
 
-    public MoviesByGenreTask(Context context,int idGenre){
+    public MoviesByGenreTask(Context context,int idGenre, ArrayList<Movie> movies,MovieAdapter adapter){
         this.context = context;
         this.idGenre = idGenre;
-        this.movieList = new ArrayList<Movie>();
+        this.movies = movies;
+        this.adapter = adapter;
     }
     
     @Override
@@ -28,18 +31,19 @@ public class MoviesByGenreTask extends AsyncTask<Void,Void,ArrayList<Movie>> {
         int page =1;
 
         Gson gson = new Gson();
+        movies.clear();
 
-        while(movieList.size() < 50){
+        while(movies.size() < 50){
             String endpoint = CreateURL(page);
             WebClient client = new WebClient();
             String retorno = client.Get(context,endpoint);
 
             MovieList lista = gson.fromJson(retorno,MovieList.class);
-            movieList.addAll(lista.getResults());
+            movies.addAll(lista.getResults());
             page ++;
         }
 
-        return movieList;
+        return movies;
     }
 
     @Override
@@ -51,6 +55,7 @@ public class MoviesByGenreTask extends AsyncTask<Void,Void,ArrayList<Movie>> {
     protected void onPostExecute(ArrayList<Movie> s) {
         super.onPostExecute(s);
 
+        adapter.notifyDataSetChanged();
     }
 
     private String CreateURL(int page){

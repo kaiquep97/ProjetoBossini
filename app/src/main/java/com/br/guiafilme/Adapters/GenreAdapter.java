@@ -46,14 +46,17 @@ public class GenreAdapter extends ArrayAdapter<Genre> {
         Context context = getContext();
         if(convertView == null){
             LayoutInflater inflater = LayoutInflater.from(context);
-            //raiz = inflater.inflate(R.layout.list_item, parent, false);
+            raiz = inflater.inflate(R.layout.list_item, parent, false);
             viewHolder = new ViewHolder();
             raiz.setTag(viewHolder);
+            viewHolder.nameTextView = raiz.findViewById(R.id.txtGeneroView);
         }
         else{
             raiz = convertView;
             viewHolder = (ViewHolder) raiz.getTag();
         }
+
+        viewHolder.nameTextView.setText(genre.getName());
 
         return raiz;
     }

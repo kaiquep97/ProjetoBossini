@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.br.guiafilme.Adapters.GenreAdapter;
 import com.br.guiafilme.R;
 import com.br.guiafilme.Web.WebClient;
 import com.br.guiafilme.model.Genre;
@@ -18,11 +19,13 @@ public class GetGenreTask extends AsyncTask<Void,Void,String> {
 
     private final ArrayList<Genre> genres;
     private final Context context;
+    private final GenreAdapter adapter;
     private ProgressDialog dialog;
 
-    public GetGenreTask(Context context, ArrayList<Genre> genres){
+    public GetGenreTask(Context context, ArrayList<Genre> genres, GenreAdapter adapter){
         this.genres = genres;
         this.context= context;
+        this.adapter = adapter;
     }
 
 
@@ -39,11 +42,14 @@ public class GetGenreTask extends AsyncTask<Void,Void,String> {
     protected void onPostExecute(String json) {
         dialog.dismiss();
         Gson gson = new Gson();
-        List<Genre> gen = new ArrayList<>();
 
         if(!json.isEmpty()) {
             GenreList list = gson.fromJson(json, GenreList.class);
 
+            genres.clear();
+            genres.addAll(list.getGenres());
+
+            adapter.notifyDataSetChanged();
         }
     }
 
