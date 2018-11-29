@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Movies And TV</string>
-    <string name="chooseGenre">Choose a Genre</string>
+    <string name="chooseGenre">Choose a Movie Genre:</string>
+    <string name="chooseMovie">Choose a Movie by Genre:</string>
     <string name="moviesList">MoviesList</string>
     <string name="selectMovie">Select Movie</string>
     <string name="synopsis">Synopsis</string>
