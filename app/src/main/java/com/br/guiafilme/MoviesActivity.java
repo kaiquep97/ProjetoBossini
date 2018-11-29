@@ -34,7 +34,6 @@ public class MoviesActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         genre = (Genre) intent.getSerializableExtra("genre");
-
     }
 
     @Override
