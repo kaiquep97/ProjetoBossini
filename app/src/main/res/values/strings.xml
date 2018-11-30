@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">guiaFilme</string>
+    <string name="app_name">GuiaFilme</string>
     <string name="API_URL">https://api.themoviedb.org/3/</string>
-    <string name="API_KEY">3205e72585105ef8a844bd228419d38e</string>
+    <string name="API_KEY">4d63ec7723a6c9a4fd557281b8001810</string>
+    <string name="ID_MOVIE"></string>
+    <string name="LANGUAGE"></string>
+    <string name="us_name">Name: </string>
+    <string name="Us_RA">RA: </string>
+    <string name="Us_Image"></string>
 </resources>
