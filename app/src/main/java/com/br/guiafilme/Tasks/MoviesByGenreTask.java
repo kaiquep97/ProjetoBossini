@@ -63,7 +63,9 @@ public class MoviesByGenreTask extends AsyncTask<Void,Void,ArrayList<Movie>> {
     private String CreateURL(int page){
         String baseURl = context.getString(R.string.API_URL);
         String apiKey = context.getString(R.string.API_KEY);
+        String language = context.getString(R.string.language);
         String endpoint =  baseURl+ "discover/movie?api_key="+apiKey
+                +"&language="+language
                 +"&sort_by=popularity.desc&include_adult=false&include_video=false&page="+page
                 +"&with_genres="+idGenre;
         return endpoint;

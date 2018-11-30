@@ -61,6 +61,8 @@ public class GetGenreTask extends AsyncTask<Void,Void,String> {
     private String CreateURL(Context context) {
         String baseUrl = context.getString(R.string.API_URL);
         String url_key = context.getString(R.string.API_KEY);
-        return baseUrl + "genre/movie/list?api_key="+url_key;
+        String language = context.getString(R.string.language);
+
+        return baseUrl + "genre/movie/list?api_key="+url_key+"&language="+language;
     }
 }
