@@ -3,7 +3,9 @@ package com.br.guiafilme;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -13,6 +15,7 @@ import com.br.guiafilme.Tasks.MoviesByGenreTask;
 import com.br.guiafilme.model.Genre;
 import com.br.guiafilme.model.Movie;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MoviesActivity extends AppCompatActivity {
@@ -34,6 +37,17 @@ public class MoviesActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         genre = (Genre) intent.getSerializableExtra("genre");
+
+        movieListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Movie movieSelected = (Movie) movieListView.getItemAtPosition(position);
+
+                Intent intentToDetails = new Intent(MoviesActivity.this, MovieDetailActivity.class);
+                intentToDetails.putExtra("movie", movieSelected);
+                startActivity(intentToDetails);
+            }
+        });
     }
 
     @Override

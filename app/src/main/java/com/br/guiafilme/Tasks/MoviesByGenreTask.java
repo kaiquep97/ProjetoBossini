@@ -1,5 +1,6 @@
 package com.br.guiafilme.Tasks;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -18,6 +19,7 @@ public class MoviesByGenreTask extends AsyncTask<Void,Void,ArrayList<Movie>> {
     private final int idGenre;
     private final ArrayList<Movie> movies;
     private final MovieAdapter adapter;
+    private ProgressDialog dialog;
 
     public MoviesByGenreTask(Context context,int idGenre, ArrayList<Movie> movies,MovieAdapter adapter){
         this.context = context;
@@ -48,13 +50,13 @@ public class MoviesByGenreTask extends AsyncTask<Void,Void,ArrayList<Movie>> {
 
     @Override
     protected void onPreExecute() {
-        super.onPreExecute();
+        dialog = ProgressDialog.show(context , "Aguarde", "Buscando Filmes ...", true,false);
     }
 
     @Override
     protected void onPostExecute(ArrayList<Movie> s) {
         super.onPostExecute(s);
-
+        dialog.dismiss();
         adapter.notifyDataSetChanged();
     }
 

@@ -1,11 +1,14 @@
 package com.br.guiafilme.model;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable {
 
     private int id;
     private String title;
     private String poster_path;
     private String overview;
+    private String backdrop_path;
 
     public int getId() {
         return id;
@@ -37,5 +40,13 @@ public class Movie {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public String getBackdrop_path() {
+        return backdrop_path;
+    }
+
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
     }
 }
