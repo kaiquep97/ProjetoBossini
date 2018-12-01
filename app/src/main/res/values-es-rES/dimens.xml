@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="Padding" type="dimen">15%</item>
+    <item name="Info" type="dimen">20%</item>
+</resources>
